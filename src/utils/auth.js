@@ -3,6 +3,7 @@
 import { db } from '@/config/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 const login = async formData => {
 	const collectionRef = collection(db, 'users')
@@ -13,6 +14,8 @@ const login = async formData => {
 	})
 
 	cookies().set('userId', docRef.id)
+
+	redirect('/')
 }
 
 export { login }

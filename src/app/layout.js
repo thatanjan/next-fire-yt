@@ -1,6 +1,7 @@
 import { Providers } from '@/components/Providers'
-import './globals.css'
 import { Inter } from 'next/font/google'
+import { Container, Button, Flex, Heading, Spacer } from '@chakra-ui/react'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,7 +14,20 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<Providers>{children}</Providers>
+				<Providers>
+					<Container maxWidth={1200} as='main'>
+						<Flex my={10} minWidth='max-content' alignItems='center' gap='2'>
+							<Heading size='md' as={Link} href='/'>
+								Nextfire
+							</Heading>
+							<Spacer />
+							<Button colorScheme='teal' as={Link} href='/create-post'>
+								Create post
+							</Button>
+						</Flex>
+						{children}
+					</Container>
+				</Providers>
 			</body>
 		</html>
 	)

@@ -2,26 +2,42 @@
 
 import Auth from '@/components/Auth'
 import { login } from '@/utils/auth'
-import { Button, FormLabel, Heading, Input } from '@chakra-ui/react'
+import { Button, Container, FormLabel, Heading, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { addMultipleDocuments } from '@/utils/firebase'
 
 const Page = () => {
 	const [authType, setAuthType] = useState('login')
 
 	return (
-		<div>
+		<Container maxWidth={400}>
 			<form action={login}>
-				<Heading>{authType}</Heading>
+				<Heading
+					sx={{
+						paddingY: 10,
+						textAlign: 'center',
+						textTransform: 'uppercase',
+					}}
+				>
+					{authType}
+				</Heading>
 
 				<FormLabel htmlFor='userName'>User Name</FormLabel>
-				<Input id='userName' placeholder='User Name' name='userName' />
+				<Input
+					marginBottom='1rem'
+					id='userName'
+					placeholder='User Name'
+					name='userName'
+				/>
 
 				<FormLabel htmlFor='password'>Password</FormLabel>
 				<Input name='password' placeholder='Password' type='password' />
 
-				<Button type='submit'>Login</Button>
+				<Button block type='submit' w='100%' mt={4}>
+					Login
+				</Button>
 			</form>
-		</div>
+		</Container>
 	)
 }
 
