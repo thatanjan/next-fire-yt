@@ -1,21 +1,10 @@
 import AddPostForm from '@/components/AddPostForm'
-import { getDocument } from '@/utils/firebase'
 import { Heading, Text } from '@chakra-ui/react'
-import React from 'react'
 
 const Page = async ({ params: { id } }) => {
-	const post = await getDocument(['posts', id])
-	// const post = await getDocument('post/' + id)
+	const post = null
 
 	if (!post) return <Heading>Post not found</Heading>
-
-	// getting post user
-	// const userRef = post.user
-	// const user = await getDoc(userRef)
-	//
-	// post.user = user.data()
-
-	const { user: _, ...postData } = post
 
 	return (
 		<div>

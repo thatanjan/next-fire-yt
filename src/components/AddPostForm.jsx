@@ -1,12 +1,5 @@
 'use client'
 
-import { db } from '@/config/firebase'
-import {
-	addMultipleDocuments,
-	addPost,
-	deleteDocument,
-	updateDocument,
-} from '@/utils/firebase'
 import {
 	Button,
 	FormControl,
@@ -15,24 +8,10 @@ import {
 	Textarea,
 	VStack,
 } from '@chakra-ui/react'
-import { doc } from 'firebase/firestore'
-// import { cookies } from 'next/headers'
 
 const AddPostForm = props => {
-	const userId = 'dfvw'
-	const userRef = doc(db, 'users', userId)
-
 	return (
-		<VStack
-			as='form'
-			action={
-				props.isForUpdate
-					? updateDocument.bind(null, ['posts', props.id])
-					: addPost
-			}
-			mx='auto'
-			maxWidth={400}
-		>
+		<VStack as='form' mx='auto' maxWidth={400}>
 			<FormControl>
 				<FormLabel>Title</FormLabel>
 				<Input
@@ -64,18 +43,12 @@ const AddPostForm = props => {
 				Submit
 			</Button>
 			{props.isForUpdate && (
-				<Button
-					onClick={() => deleteDocument(['posts', props.id])}
-					type='submit'
-					w='100%'
-				>
+				<Button type='submit' w='100%'>
 					Delete Document
 				</Button>
 			)}
 
-			<Button type='button' onClick={() => addMultipleDocuments()}>
-				Add multiple documents
-			</Button>
+			<Button type='button'>Add multiple documents</Button>
 		</VStack>
 	)
 }
