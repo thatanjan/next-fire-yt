@@ -1,5 +1,3 @@
-'use client'
-
 import {
 	Button,
 	FormControl,
@@ -9,13 +7,13 @@ import {
 	VStack,
 } from '@chakra-ui/react'
 
-const AddPostForm = props => {
+const AddPostForm = ({ title = '', content = '', tags = [] }) => {
 	return (
 		<VStack as='form' mx='auto' maxWidth={400}>
 			<FormControl>
 				<FormLabel>Title</FormLabel>
 				<Input
-					defaultValue={props.title || ''}
+					defaultValue={title}
 					type='text'
 					placeholder='Title'
 					name='title'
@@ -24,7 +22,7 @@ const AddPostForm = props => {
 			<FormControl>
 				<FormLabel>Content</FormLabel>
 				<Textarea
-					defaultValue={props.content || ''}
+					defaultValue={content}
 					placeholder="What's on your mind?"
 					name='content'
 					rows={5}
@@ -33,7 +31,7 @@ const AddPostForm = props => {
 			<FormControl>
 				<FormLabel>Tags</FormLabel>
 				<Input
-					defaultValue={props.tags?.join(', ') || ''}
+					defaultValue={tags.join(', ')}
 					type='text'
 					placeholder='test, test2'
 					name='tags'
@@ -42,13 +40,13 @@ const AddPostForm = props => {
 			<Button type='submit' w='100%'>
 				Submit
 			</Button>
-			{props.isForUpdate && (
-				<Button type='submit' w='100%'>
-					Delete Document
-				</Button>
-			)}
-
-			<Button type='button'>Add multiple documents</Button>
+			{/* {props.isForUpdate && ( */}
+			{/* 	<Button type='submit' w='100%'> */}
+			{/* 		Delete Document */}
+			{/* 	</Button> */}
+			{/* )} */}
+			{/**/}
+			{/* <Button type='button'>Add multiple documents</Button> */}
 		</VStack>
 	)
 }
