@@ -14,7 +14,7 @@ const Page = async ({ params: { id } }) => {
 				{post?.tags?.map(tag => `#${tag} `)}
 			</Text>
 
-			<AddPostForm isForUpdate={true} {...postData} />
+			{/* <AddPostForm isForUpdate={true} {...postData} /> */}
 		</div>
 	)
 }
