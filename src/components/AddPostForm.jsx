@@ -1,3 +1,10 @@
+'use client'
+import {
+	addMultiplePosts,
+	addPost,
+	deletePost,
+	updatePost,
+} from '@/utils/firebase'
 import {
 	Button,
 	FormControl,
@@ -7,9 +14,20 @@ import {
 	VStack,
 } from '@chakra-ui/react'
 
-const AddPostForm = ({ title = '', content = '', tags = [] }) => {
+const AddPostForm = ({
+	isForUpdate,
+	id = '',
+	title = '',
+	content = '',
+	tags = [],
+}) => {
 	return (
-		<VStack as='form' mx='auto' maxWidth={400}>
+		<VStack
+			as='form'
+			mx='auto'
+			maxWidth={400}
+			action={isForUpdate ? updatePost.bind(null, id) : addPost}
+		>
 			<FormControl>
 				<FormLabel>Title</FormLabel>
 				<Input
@@ -40,13 +58,12 @@ const AddPostForm = ({ title = '', content = '', tags = [] }) => {
 			<Button type='submit' w='100%'>
 				Submit
 			</Button>
-			{/* {props.isForUpdate && ( */}
-			{/* 	<Button type='submit' w='100%'> */}
-			{/* 		Delete Document */}
-			{/* 	</Button> */}
-			{/* )} */}
-			{/**/}
-			{/* <Button type='button'>Add multiple documents</Button> */}
+			<Button type='submit' w='100%' onClick={() => deletePost(id)}>
+				Delete Document
+			</Button>
+			<Button onClick={() => addMultiplePosts()} type='button'>
+				Add multiple documents
+			</Button>
 		</VStack>
 	)
 }

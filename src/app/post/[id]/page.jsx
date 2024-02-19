@@ -1,10 +1,24 @@
 import AddPostForm from '@/components/AddPostForm'
 import { Heading, Text } from '@chakra-ui/react'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '@/config/firebase'
 
 const Page = async ({ params: { id } }) => {
-	const post = null
+	let post = null
+
+	const docRef = doc(db, 'posts', id)
+	const docSnap = await getDoc(docRef)
+
+	if (docSnap.exists()) {
+		post = { id: docSnap.id, ...docSnap.data() }
+	}
 
 	if (!post) return <Heading>Post not found</Heading>
+
+	const userRef = post.user
+	const userSnap = await getDoc(userRef)
+
+	post.user = userSnap.data()
 
 	return (
 		<div>
@@ -14,7 +28,7 @@ const Page = async ({ params: { id } }) => {
 				{post?.tags?.map(tag => `#${tag} `)}
 			</Text>
 
-			<AddPostForm isForUpdate={true} {...postData} />
+			<AddPostForm {...post} isForUpdate />
 		</div>
 	)
 }

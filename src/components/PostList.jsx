@@ -20,7 +20,7 @@ const PostsList = ({ postList }) => {
 							{title}
 						</Heading>
 						<Text fontSize='sm' color='gray.500'>
-							{createdAt.toDate().toDateString()}
+							{createdAt?.toDate().toDateString()}
 						</Text>
 					</CardHeader>
 					<CardBody>

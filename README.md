@@ -3,6 +3,9 @@ This is repo belongs to the course "Firebase Firestore course with Nextjs 14" on
 ## How to use this repo
 
 - Clone the repo
+- Use the correct branch for the video you are watching
+  - `starter` branch for the starting code
+  - `final` branch for the final code
 - Install the dependencies
 - Run the app
 
